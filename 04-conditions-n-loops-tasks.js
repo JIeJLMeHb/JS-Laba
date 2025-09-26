@@ -47,7 +47,6 @@ function getFizzBuzz(num) {
 function getFactorial(n) {
   if (n < 0) throw new Error('Factorial is not defined for negative numbers');
   if (n === 0 || n === 1) return 1;
-
   let result = 1;
   let i = 2;
   while (i <= n) {
@@ -135,13 +134,11 @@ function doRectanglesOverlap(rect1, rect2) {
   const rect1Bottom = rect1.top + rect1.height;
   const rect2Right = rect2.left + rect2.width;
   const rect2Bottom = rect2.top + rect2.height;
-
   const noOverlap =
     rect1Right <= rect2.left ||
     rect2Right <= rect1.left ||
     rect1Bottom <= rect2.top ||
     rect2Bottom <= rect1.top;
-
   return !noOverlap;
 }
 
@@ -289,7 +286,6 @@ function isCreditCardNumber(ccn) {
   const digits = String(ccn).split('').map(Number);
   let sum = 0;
   const len = digits.length;
-
   for (let i = 0; i < len; i += 1) {
     let digit = digits[len - 1 - i];
     if (i % 2 === 1) {
@@ -298,7 +294,6 @@ function isCreditCardNumber(ccn) {
     }
     sum += digit;
   }
-
   return sum % 10 === 0;
 }
 
@@ -356,7 +351,6 @@ function isBracketsBalanced(str) {
     '}': '{',
     '>': '<',
   };
-
   for (let i = 0; i < str.length; i += 1) {
     const char = str[i];
     if (Object.values(brackets).includes(char)) {
@@ -367,7 +361,6 @@ function isBracketsBalanced(str) {
       }
     }
   }
-
   return stack.length === 0;
 }
 
@@ -409,11 +402,9 @@ function toNaryString(num, n) {
  */
 function getCommonDirectoryPath(pathes) {
   if (pathes.length === 0) return '';
-
   const splitPaths = pathes.map((path) => path.split('/'));
   const minLength = Math.min(...splitPaths.map((parts) => parts.length));
   const commonParts = [];
-
   for (let i = 0; i < minLength; i += 1) {
     const segment = splitPaths[0][i];
     if (splitPaths.every((parts) => parts[i] === segment)) {
@@ -422,7 +413,6 @@ function getCommonDirectoryPath(pathes) {
       break;
     }
   }
-
   return commonParts.length > 0 ? `${commonParts.join('/')}/` : '';
 }
 
@@ -448,9 +438,7 @@ function getMatrixProduct(m1, m2) {
   const rowsM1 = m1.length;
   const colsM1 = m1[0].length;
   const colsM2 = m2[0].length;
-
   const result = Array.from({ length: rowsM1 }, () => Array(colsM2).fill(0));
-
   for (let i = 0; i < rowsM1; i += 1) {
     for (let j = 0; j < colsM2; j += 1) {
       for (let k = 0; k < colsM1; k += 1) {
@@ -458,7 +446,6 @@ function getMatrixProduct(m1, m2) {
       }
     }
   }
-
   return result;
 }
 
@@ -494,26 +481,21 @@ function getMatrixProduct(m1, m2) {
  */
 function evaluateTicTacToePosition(position) {
   const lines = [
-    // Rows
     [position[0][0], position[0][1], position[0][2]],
     [position[1][0], position[1][1], position[1][2]],
     [position[2][0], position[2][1], position[2][2]],
-    // Columns
     [position[0][0], position[1][0], position[2][0]],
     [position[0][1], position[1][1], position[2][1]],
     [position[0][2], position[1][2], position[2][2]],
-    // Diagonals
     [position[0][0], position[1][1], position[2][2]],
     [position[0][2], position[1][1], position[2][0]],
   ];
-
   for (let i = 0; i < lines.length; i += 1) {
     const [a, b, c] = lines[i];
     if (a && a === b && b === c) {
       return a;
     }
   }
-
   return undefined;
 }
 
